@@ -1,19 +1,18 @@
 <?php
 	require('/var/www/html/conn.php');
-	require('/var/www/html/jwt.php');
 
 	mysqli_select_db($conn, $dbname);
 	$user_id = $_POST['id'];
 	$user_pw = $_POST['pw'];
 	$user_name = $_POST['name'];
 	//overlap test
-	$sql = "SELECT * FROM test where id='$user_id'";
+	$sql = "SELECT * FROM user where id='$user_id'";
 	$result = mysqli_query($conn, $sql);
 	$r = mysqli_num_rows($result);
 	if($r == 1){
 		$value = array("isSuccessed"=>false);
 	}else{
-		$s = "insert into test (id, pw, name) values ('$user_id', '$user_pw', '$user_name')";
+		$s = "insert into user (id, pw, name) values ('$user_id', '$user_pw', '$user_name')";
 		$res = mysqli_query($conn, $s);
 		$value = array("isSuccessed"=>true);
 	}
